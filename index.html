@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sex calculator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+          rel="stylesheet">
+
+    <script src="./date-input.js"></script>
+
+    <style>
+        h1, p {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1.1em;
+        }
+
+        section {
+            padding-left: 1em;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-input {
+            display: inline;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 2em;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section>
+        <h1>When did your parents have sex?</h1>
+        <p>This is the dumbest idea I've ever built. But hey, now you know when your parens had sex in order to conceive you!</p>
+    </section>
+
+    <section>
+        <form>
+            <p>Step 1: enter your birthday</p>
+            <app-date-input id="date_input"></app-date-input>
+            <p>Step 2:</p>
+            <button type="submit">Calculate!</button>
+            <p>Step 3: <span id="result">Get results!</span></p>
+        </form>
+    </section>
+</main>
+
+<script>
+    document.forms[0].addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        goGoGadgetCalculate();
+
+        return false;
+    });
+
+    function goGoGadgetCalculate() {
+        const input = document.getElementById('date_input');
+        const sexDate = input.calculateSexDate();
+        const sexMonth = sexDate.toLocaleString('default', {month: 'long'});
+
+        window.result.innerHTML = `Your parents most likely fucked in <em>${sexMonth}</em>`;
+    }
+</script>
+</body>
+</html>
